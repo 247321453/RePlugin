@@ -127,11 +127,13 @@ if (isAndroid()) {
     apply plugin: 'com.github.dcendents.android-maven'
 }
 
+def ex_packaging = isAndroid()?'aar':'jar'
+
 install {
     repositories.mavenInstaller {
         pom {
             project {
-                packaging 'aar'
+                packaging ex_packaging
                 name pbArtifactId
                 url pbSiteUrl
                 licenses {
