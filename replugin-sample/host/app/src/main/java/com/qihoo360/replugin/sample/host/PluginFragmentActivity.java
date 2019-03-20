@@ -2,6 +2,7 @@ package com.qihoo360.replugin.sample.host;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
@@ -53,5 +54,15 @@ public class PluginFragmentActivity extends FragmentActivity {
             e.printStackTrace();
         }
 
+        try {
+            DialogFragment fragment = d1ClassLoader.loadClass("com.qihoo360.replugin.sample.demo1.fragment.MyDialogFragment").asSubclass(DialogFragment.class).newInstance();//使用插件的Classloader获取指定Fragment实例
+            fragment.show(getSupportFragmentManager(), "MyDialogFragment");
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
