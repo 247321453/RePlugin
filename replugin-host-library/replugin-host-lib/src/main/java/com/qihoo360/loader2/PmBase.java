@@ -375,9 +375,8 @@ class PmBase {
         }
 
         if (updatedPlugins != null) {
+			refreshPluginMap(plugins);
             refreshPluginMap(updatedPlugins);
-        } else {
-            refreshPluginMap(plugins);
         }
     }
 
