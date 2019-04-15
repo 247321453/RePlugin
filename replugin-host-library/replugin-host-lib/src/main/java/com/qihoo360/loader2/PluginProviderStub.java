@@ -161,8 +161,13 @@ public class PluginProviderStub {
     private static final IBinder proxyFetchHostBinder(Context context, String selection) {
         //
         Cursor cursor = null;
+		Uri uri;
+        if (HostConfigHelper.PERSISTENT_ENABLE) {
+            uri = ProcessPitProviderPersist.URI;
+        } else {
+            uri = ProcessPitProviderUI.buildUri(IPluginManager.PROCESS_UI);
+        }
         try {
-            Uri uri = ProcessPitProviderPersist.URI;
             cursor = context.getContentResolver().query(uri, PROJECTION_MAIN, selection, null, null);
             if (cursor == null) {
                 if (LOG) {
